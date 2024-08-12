@@ -35,6 +35,7 @@ const ParseCommandOptionsSchema = z.object({
   output: z.string().optional(),
   targetPages: z.string().optional(),
   verbose: z.boolean().default(false),
+  boundingBox: z.string().optional(),
 });
 
 type ParseCommandOptions = z.infer<typeof ParseCommandOptionsSchema>;
@@ -63,6 +64,10 @@ export const createParseCommand = () =>
       "The target pages. Describe as a comma separated list of page numbers. The first page of the document is page 0"
     )
     .option("-v --verbose", "Verbose mode")
+    .option(
+          "-bb --bounding-box <bounding-box>",
+          "Specify an area of a document to parse. Provide margins in clockwise order from the top, comma-separated (e.g., '0.1,0,0.2,0')"
+      )
     .action(async (file: string, _options: ParseCommandOptions) => {
       if (!file || !fs.existsSync(file)) {
         console.error(chalk.red("File does not exist"));
@@ -86,6 +91,7 @@ export const createParseCommand = () =>
           fast_mode: inputCommand.fastMode,
           gpt4o_mode: inputCommand.gpt4o,
           target_pages: inputCommand.targetPages,
+          bounding_box: inputCommand.boundingBox,
         };
 
         const apiKey = await getApiKey();

@@ -49,6 +49,7 @@ llama-parse parse <file> [options]
 - `-gpt4o, --gpt-4o`: Use GPT-4o
 - `-tp, --target-pages <target-pages>`: The target pages (comma-separated list, starting from 0)
 - `-v, --verbose`: Verbose mode
+- `-bb, --bounding-box`: Provide the bounding box margin in clockwise order from the top in a comma-separated. The margins are expressed as a fraction of the page size, a number between 0 and 1. Examples: To exclude the top 10% of a document: bounding_box="0.1,0,0,0"
 
 ## Examples
 

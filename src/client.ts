@@ -33,6 +33,7 @@ export type ParseOptions = {
   gpt4o_mode?: boolean;
   output_format: OutputFormat;
   target_pages?: string;
+  bounding_box?: string;
 };
 
 const DEFAULT_POLLING_INTERVAL = 1000;
